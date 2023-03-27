@@ -27,9 +27,9 @@ func TransferMoney(ctx workflow.Context, transferDetails TransferDetails) error 
 	if err != nil {
 		return err
 	}
-	err = workflow.ExecuteActivity(ctx, Deposit, transferDetails).Get(ctx, nil)
-	if err != nil {
-		return err
-	}
+	//err = workflow.ExecuteActivity(ctx, Deposit, transferDetails).Get(ctx, nil)
+	//if err != nil {
+	//	return err
+	//}
 	return nil
 }

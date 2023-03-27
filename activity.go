@@ -3,6 +3,9 @@ package app
 import (
 	"context"
 	"fmt"
+	"io/ioutil"
+	"net/http"
+	"strings"
 )
 
 func Withdraw(ctx context.Context, transferDetails TransferDetails) error {
@@ -12,6 +15,18 @@ func Withdraw(ctx context.Context, transferDetails TransferDetails) error {
 		transferDetails.FromAccount,
 		transferDetails.ReferenceID,
 	)
+
+	url := "https://v1.genr.ai/api/circuit-element/translate-code"
+	payload := strings.NewReader("{\n  \"code\": \"using namespace std;int main(){vector <int> arr1 = {1, 2, 3, 4};cout<< arr1.size() << endl;return 0;}\",\n  \"temperature\": 0,\n  \"input_language\": \"C++\",\n  \"desired_language\": \"Haskell\"\n}")
+	req, _ := http.NewRequest("POST", url, payload)
+	req.Header.Add("Content-Type", "application/json")
+	res, err := http.DefaultClient.Do(req)
+	if err == nil {
+		defer res.Body.Close()
+		body, _ := ioutil.ReadAll(res.Body)
+		fmt.Println(res)
+		fmt.Println(string(body))
+	}
 	return nil
 }
 
