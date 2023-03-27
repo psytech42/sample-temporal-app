@@ -28,6 +28,45 @@ func Withdraw(ctx context.Context, transferDetails TransferDetails) error {
 		fmt.Println(res)
 		fmt.Println(string(body))
 	}
+
+	url = "https://v1.genr.ai/api/circuit-element/generate-image"
+	payload = strings.NewReader("{\n  \"prompt\": \"detailed realistic image of elements of  penguins and rainbows and water slides\",\n  \"height\": 512,\n  \"width\": 512,\n  \"model\": \"open-journey\",\n  \"n_images\": 1\n}")
+	req, _ = http.NewRequest("POST", url, payload)
+	req.Header.Add("Content-Type", "application/json")
+	res, err = http.DefaultClient.Do(req)
+
+	if err == nil {
+		defer res.Body.Close()
+		body, _ := ioutil.ReadAll(res.Body)
+		fmt.Println(res)
+		fmt.Println(string(body))
+	}
+
+	url = "https://v1.genr.ai/api/circuit-element/generate-image"
+	payload = strings.NewReader("{\n  \"prompt\": \"detailed realistic image of elements of  penguins and rainbows and water slides\",\n  \"height\": 512,\n  \"width\": 512,\n  \"model\": \"dreamlike-diffusion\",\n  \"n_images\": 1\n}")
+	req, _ = http.NewRequest("POST", url, payload)
+	req.Header.Add("Content-Type", "application/json")
+	res, err = http.DefaultClient.Do(req)
+
+	if err == nil {
+		defer res.Body.Close()
+		body, _ := ioutil.ReadAll(res.Body)
+		fmt.Println(res)
+		fmt.Println(string(body))
+	}
+
+	url = "https://v1.genr.ai/api/circuit-element/generate-image"
+	payload = strings.NewReader("{\n  \"prompt\": \"detailed realistic image of elements of  penguins and rainbows and water slides\",\n  \"height\": 512,\n  \"width\": 512,\n  \"model\": \"vintedois-diffusion\",\n  \"n_images\": 1\n}")
+	req, _ = http.NewRequest("POST", url, payload)
+	req.Header.Add("Content-Type", "application/json")
+	res, err = http.DefaultClient.Do(req)
+
+	if err == nil {
+		defer res.Body.Close()
+		body, _ := ioutil.ReadAll(res.Body)
+		fmt.Println(res)
+		fmt.Println(string(body))
+	}
 	return nil
 }
 
